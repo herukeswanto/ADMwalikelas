@@ -57,27 +57,29 @@
     &copy; 2025 EduSmart | Magister Teknologi Pendidikan – UNJA
   </footer>
 
-  <script>
-    google.charts.load('current', { packages: ['table'] });
-    google.charts.setOnLoadCallback(drawTable);
+  <script type="text/javascript">
+  google.charts.load('current', {'packages':['table']});
+  google.charts.setOnLoadCallback(drawTable);
 
-    function drawTable() {
-      var query = new google.visualization.Query(
-        'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2HZZ98lPUDUFC3hX1ClCSZEGuiYHH-Pzc-3NcJFPjF4QYWl-1B5he059f_aF_jHCvUQz12Dl4GEZd/gviz/tq?sheet=Sheet1'
-      );
-      query.send(function (response) {
-        if (response.isError()) {
-          document.getElementById("data-siswa").innerHTML =
-            '<div class="alert alert-danger">❌ Gagal mengambil data: ' + response.getMessage() + '</div>';
-          return;
-        }
+  function drawTable() {
+    var query = new google.visualization.Query(
+      'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ2HZZ98lPUDUFC3hX1ClCSZEGuiYHH-Pzc-3NcJFPjF4QYWl-1B5he059f_aF_jHCvUQz12Dl4GEZd/gviz/tq?sheet=Sheet1'
+    );
 
-        var data = response.getDataTable();
-        var table = new google.visualization.Table(document.getElementById('data-siswa'));
-        table.draw(data, { showRowNumber: true, width: '100%', height: 'auto' });
-      });
-    }
-  </script>
+    query.send(function(response) {
+      if (response.isError()) {
+        document.getElementById("data-siswa").innerHTML =
+          '<div class="alert alert-danger">❌ Gagal mengambil data: ' + response.getMessage() + '</div>';
+        return;
+      }
+
+      var data = response.getDataTable();
+      var table = new google.visualization.Table(document.getElementById('data-siswa'));
+      table.draw(data, {showRowNumber: true, width: '100%', height: 'auto'});
+    });
+  }
+</script>
+
 
 </body>
 </html>
